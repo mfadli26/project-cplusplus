@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1543069706 source:c:\users\rahagi\documents\github\project-cplusplus\project yoga\linked.cpp
+	<cstdlib>
+	<iostream>
+	<conio.h>
+	"Linked.h"
+
+1543071100 c:\users\rahagi\documents\github\project-cplusplus\project yoga\linked.h
+	<stdio.h>
+	<iostream>
+
+1543071207 source:c:\users\rahagi\documents\github\project-cplusplus\project yoga\main.cpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	"Linked.cpp"
+
+1543071326 c:\users\rahagi\documents\github\project-cplusplus\project yoga\linked.cpp
+	<cstdlib>
+	<iostream>
+	<conio.h>
+	"Linked.h"
+
