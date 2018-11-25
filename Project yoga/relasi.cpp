@@ -46,38 +46,38 @@ void printRuanganRelasiMahasiswa(list_ruangan Lruangan, relasi_list Lrelasi){
             cout<<"Nama Ruangan = "<<info(Rk).nama_ruangan<<endl;
             cout<<"Kapasitas = "<<info(Rk).kapasitas<<endl;
             cout<<"Mahasiswa = ";
-            address_relasi R = first(Lrelasi);
-            do{
-                if(Ruangan(R) == Rk){
-                    cout<<info(Mahasiswa(R)).nama<<", ";
-                }
-                R = next(R);
-            } while(R != first(Lrelasi));
-            Rk = next(B);
+            if(first(Lrelasi) != NULL){
+                address_relasi R = first(Lrelasi);
+                do{
+                    if(Ruangan(R) == Rk){
+                        cout<<info(Mahasiswa(R)).nama<<", ";
+                    }
+                    R = next(R);
+                } while(R != first(Lrelasi));
+            }
+            Rk = next(Rk);
             cout<<endl;
         }
     }
     cout<<endl;
 };
 
-void printRuanganRelasiTertentu(relasi_list Lrelasi, address_ruangan Rk){
+void printMahasiswaRelasiTertentu(relasi_list Lrelasi, address_mahasiswa M){
     address_relasi Q = first(Lrelasi);
     cout<<endl;
-    cout<<"Nama Relasi : "<<info(Rk).nama_ruangan<<endl;
-    cout<<"-----------------------"<<endl;
-    cout<<"Tahun Beasiswa : "<<info(Rk).Kapasitas<<endl;
-    cout<<"-----------------------"<<endl;
-    cout<<"Mahasiswa : ";
+    cout<<"Nama Mahasiswa : "<<info(M).nama<<endl;
+    cout<<"Nim Mahasiswa  : "<<info(M).nim<<endl;
+    cout<<"Ruang Kelas    :";
     do{
-        if(Ruangan(Q) == Rk){
-            cout<<info(Mahasiswa(Q)).nama<<", ";
+        if(Mahasiswa(Q) == M){
+            cout<<info(Ruangan(Q)).nama_ruangan<<", ";
         }
         Q = next(Q);
     } while(Q != first(Lrelasi));
     cout<<endl<<"-----------------------"<<endl;
 };
 
-address_relasi findRelasi(relasi_list Lrelasi, address_relasi Rk, address_mahasiswa M){
+address_relasi findRelasi(relasi_list Lrelasi, address_ruangan Rk, address_mahasiswa M){
     address_relasi R = first(Lrelasi);
     if (first(Lrelasi) == NULL){
         R = NULL;
@@ -86,6 +86,23 @@ address_relasi findRelasi(relasi_list Lrelasi, address_relasi Rk, address_mahasi
     else {
         do{
             if(Ruangan(R) == Rk and Mahasiswa(R) == M){
+                return R;
+            }
+            R = next(R);
+        } while(R != first(Lrelasi));
+    }
+    return NULL;
+};
+
+address_relasi findRelasiTertentu(relasi_list Lrelasi, address_mahasiswa M){
+    address_relasi R = first(Lrelasi);
+    if (first(Lrelasi) == NULL){
+        R = NULL;
+        return R;
+    }
+    else {
+        do{
+            if(Mahasiswa(R) == M){
                 return R;
             }
             R = next(R);
@@ -195,4 +212,9 @@ void deleteSemuaRelasiMahasiswa(relasi_list Lrelasi, address_mahasiswa M){
             R = NULL;
         }
     } while(R != first(Lrelasi) and R != NULL);
+};
+
+void updateRelasi(address_relasi &R, address_mahasiswa M, address_ruangan Rk){
+    Ruangan(R) = Rk;
+    Mahasiswa(R) = M;
 };
