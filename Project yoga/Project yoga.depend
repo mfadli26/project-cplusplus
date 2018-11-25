@@ -21,3 +21,25 @@
 	<conio.h>
 	"Linked.h"
 
+1543073771 source:c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.cpp
+	<cstdlib>
+	<iostream>
+	<conio.h>
+	"Linked.h"
+
+1543073771 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.h
+	<stdio.h>
+	<iostream>
+
+1543073771 source:c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\main.cpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	"Linked.cpp"
+
+1543073771 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.cpp
+	<cstdlib>
+	<iostream>
+	<conio.h>
+	"Linked.h"
+
