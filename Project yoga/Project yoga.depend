@@ -27,25 +27,25 @@
 	<conio.h>
 	"Linked.h"
 
-1543212004 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.h
+1543221974 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.h
 	<stdio.h>
 	<iostream>
 	<conio.h>
 
-1543210598 source:c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\main.cpp
+1543224777 source:c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\main.cpp
 	<iostream>
 	<cstdlib>
 	<conio.h>
 	"Linked.cpp"
 	"relasi.cpp"
 
-1543212017 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.cpp
+1543222102 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\linked.cpp
 	<cstdlib>
 	<iostream>
 	<conio.h>
 	"Linked.h"
 
-1543178419 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\relasi.cpp
+1543222422 c:\users\muhammad fadli\documents\github\project-cplusplus\project yoga\relasi.cpp
 	<cstdlib>
 	<iostream>
 	<conio.h>

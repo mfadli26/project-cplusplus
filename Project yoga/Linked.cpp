@@ -16,6 +16,10 @@ void CreateMahasiswa(list_mahasiswa &Lmahasiswa){
 address_ruangan alokasiRuangan(infotype_ruangan X){
     address_ruangan P = new elmlist_ruangan;
     info(P).nama_ruangan = X.nama_ruangan;
+    info(P).dosen = X.dosen;
+    info(P).kode_dosen = X.kode_dosen;
+    info(P).jam_mulai = X.jam_mulai;
+    info(P).jam_berakhir = X.jam_berakhir;
     next(P) = NULL;
     prev(P) = NULL;
     return P;
@@ -23,8 +27,11 @@ address_ruangan alokasiRuangan(infotype_ruangan X){
 
 address_mahasiswa alokasiMahasiswa(infotype_mahasiswa X){
     address_mahasiswa P = new elmlist_mahasiswa;
-    info(P).nama = X.nama;
+    info(P).nama_m = X.nama_m;
     info(P).nim = X.nim;
+    info(P).asal = X.asal;
+    info(P).jurusan = X.jurusan;
+    info(P).angkatan = X.angkatan;
     next(P) = NULL;
     prev(P) = NULL;
     return P;
@@ -93,7 +100,10 @@ void printRuangan(list_ruangan Lruangan){
         while (R != NULL){
             cout<<endl;
             cout<<"Nama Ruangan       = "<<info(R).nama_ruangan<<endl;
-            cout<<"Kapasistas Ruangan = "<<info(R).kapasitas<<endl;
+            cout<<"Nama Dosen         = "<<info(R).dosen<<endl;
+            cout<<"Kode Dosen         = "<<info(R).kode_dosen<<endl;
+            cout<<"Jam Mulai          = "<<info(R).jam_mulai<<endl;
+            cout<<"Jam Berakhir       = "<<info(R).jam_berakhir<<endl;
             R = next(R);
             cout<<endl;
         }
@@ -152,7 +162,10 @@ void deleteRuangan(list_ruangan &Lruangan, address_ruangan P){
 
 void updateDataRuangan(address_ruangan &R, infotype_ruangan Ru){
     info(R).nama_ruangan = Ru.nama_ruangan;
-    info(R).kapasitas = Ru.kapasitas;
+    info(R).dosen = Ru.dosen;
+    info(R).kode_dosen = Ru.kode_dosen;
+    info(R).jam_mulai = Ru.jam_mulai;
+    info(R).jam_berakhir = Ru.jam_berakhir;
 };
 
 void printMahasiswa(list_mahasiswa Lmahasiswa){
@@ -163,8 +176,11 @@ void printMahasiswa(list_mahasiswa Lmahasiswa){
         address_mahasiswa M = first(Lmahasiswa);
         while (M != NULL){
             cout<<endl;
-            cout<<"Nama mahasiswa       = "<<info(M).nama<<endl;
+            cout<<"Nama mahasiswa       = "<<info(M).nama_m<<endl;
             cout<<"Nim mahasiswa        = "<<info(M).nim<<endl;
+            cout<<"Kota Asal            = "<<info(M).asal<<endl;
+            cout<<"Jurusan              = "<<info(M).jurusan<<endl;
+            cout<<"Angkatan             = "<<info(M).angkatan<<endl;
             M = next(M);
             cout<<endl;
         }
@@ -222,6 +238,9 @@ void deleteMahasiswa(list_mahasiswa &Lmahasiswa, address_mahasiswa P){
 };
 
 void updateDataMahasiswa(address_mahasiswa &R, infotype_mahasiswa Ru){
-    info(R).nama = Ru.nama;
+    info(R).nama_m = Ru.nama_m;
     info(R).nim = Ru.nim;
+    info(R).asal = Ru.asal;
+    info(R).jurusan = Ru.jurusan;
+    info(R).angkatan = Ru.angkatan;
 };
