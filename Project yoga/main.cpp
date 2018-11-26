@@ -207,7 +207,8 @@ int main()
             cout<<"3. Pindah Mahasiswa Ke Raung Kelas Lain"<<endl;
             cout<<"4. Lihat Ruang Kelas Dan Mahasiswa"<<endl;
             cout<<"5. Hapus Mahasiswa Yang Masuk Ruang Kelas"<<endl;
-            cout<<"6. Back"<<endl;
+            cout<<"6. Cari Mahasiswa Yang Masuk Keruang Tertenru"<<endl;
+            cout<<"7. Back"<<endl;
             cout<<"___________________________________________________"<<endl;
             cout<<"Pilihan Anda : ";cin>>option;
             if(option == 1){
@@ -492,6 +493,34 @@ int main()
                 }
             }
             else if(option == 6){
+                system("cls");
+                cout<<"Cari Mahasiswa Yang Masuk Ke Ruang Kelas Tertentu"<<endl;
+                cout<<"_________________________________________________"<<endl;
+                cout<<"Masukkan Nim Mahasiswa : ";cin>>Ma.nim;
+                address_mahasiswa Mj = findMahasiswa(Lmahasiswa, Ma);
+                if(Mj != NULL){
+                    system("cls");
+                    cout<<"Cari Mahasiswa Yang Masuk Ke Ruang Kelas Tertentu"<<endl;
+                    cout<<"_________________________________________________"<<endl;
+                    address_relasi R2 = findRelasiTertentu(Lrelasi, Mj);
+                    if(R2 != NULL){
+                        printMahasiswaRelasiTertentu(Lrelasi, Mj);
+                        cout<<"Press Any Key To Back..";getche();
+                        goto menu_relasi;
+                    }
+                    else{
+                        cout<<"Data Mahasiswa Ditemukan Tetapi Belum Masuk Ke Ruang Kelas Manapun"<<endl<<endl;
+                        cout<<"Press Any Key To Back..";getche();
+                        goto menu_relasi;
+                    }
+                }
+                else{
+                    cout<<"Data Mahasiswa Tidak Ditemukan"<<endl<<endl;
+                    cout<<"Press Any Key To Back..";getche();
+                    goto menu_relasi;
+                }
+            }
+            else if(option == 7){
                 goto start;
             }
             else{

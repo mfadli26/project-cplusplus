@@ -16,7 +16,6 @@ void CreateMahasiswa(list_mahasiswa &Lmahasiswa){
 address_ruangan alokasiRuangan(infotype_ruangan X){
     address_ruangan P = new elmlist_ruangan;
     info(P).nama_ruangan = X.nama_ruangan;
-    info(P).kapasitas = X.kapasitas;
     next(P) = NULL;
     prev(P) = NULL;
     return P;
