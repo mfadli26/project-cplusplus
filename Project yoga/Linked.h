@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <conio.h>
 
 #define first(Lruangan) Lruangan.first
 #define last(Lruangan) Lruangan.last
@@ -15,11 +16,17 @@ using namespace std;
 
 struct infotype_ruangan{
     string nama_ruangan;
-    int kapasitas;
+    string dosen;
+    string kode_dosen;
+    string jam_mulai;
+    string jam_berakhir;
 };
 struct infotype_mahasiswa{
     string nim;
-    string nama;
+    string nama_m;
+    string asal;
+    string jurusan;
+    string angkatan;
 };
 
 typedef struct elmlist_ruangan *address_ruangan;
