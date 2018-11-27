@@ -123,7 +123,7 @@ void printRuanganRelasiTertentu(relasi_list Lrelasi, address_ruangan Ru){
     cout<<"Jam Mulai        : "<<info(Ru).jam_mulai<<endl;
     cout<<"Jam Berakhir     : "<<info(Ru).jam_berakhir<<endl;
 
-    cout<<"Ruang Kelas      :";
+    cout<<"Nama Mahasiswa   :";
     do{
         if(Ruangan(Q) == Ru){
             cout<<info(Mahasiswa(Q)).nama_m<<", ";
