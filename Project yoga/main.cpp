@@ -19,6 +19,10 @@ int main()
     CreateListRelasi(Lrelasi);
     infotype_ruangan Ru;
     infotype_mahasiswa Ma;
+    Ru.nama_ruangan = "asd";
+    Ma.nim = "zxc";
+    insertMahasiswa(Lmahasiswa, alokasiMahasiswa(Ma));
+    insertRuangan(Lruangan, alokasiRuangan(Ru));
     start:
     system("cls");
     cout<<endl;
@@ -77,6 +81,7 @@ int main()
                     cout<<" Jam Mulai    : "<<info(R).jam_mulai<<endl;
                     cout<<" Jam Berakhir : "<<info(R).jam_berakhir<<endl;
                     cout<<endl<<" Tekan Apapun untuk melanjutkan";getch();
+                    deleteSemuaRelasiRuangan(Lrelasi, R);
                     deleteRuangan(Lruangan, R);
                     cout<<endl<<" Data Berhasil Dihapus"<<endl;
                     cout<<endl<<" Back to menu...";getch();
@@ -168,6 +173,7 @@ int main()
                     cout<<"Jurusan          : "<<info(M).jurusan<<endl;
                     cout<<"Angkatan         : "<<info(M).angkatan<<endl;
                     cout<<endl<<" Tekan Apapun untuk melanjutkan";getch();
+                    deleteSemuaRelasiMahasiswa(Lrelasi, M);
                     deleteMahasiswa(Lmahasiswa, M);
                     cout<<endl<<" Data Berhasil Dihapus"<<endl;
                     cout<<endl<<" Back to menu...";getch();
@@ -226,10 +232,12 @@ int main()
             cout<<"1. Pilih Ruang Kelas Untuk Mahasiswa"<<endl;
             cout<<"2. Pilih Mahasiswa Untuk Dimasukkan Ke Ruang Kelas"<<endl;
             cout<<"3. Pindah Mahasiswa Ke Raung Kelas Lain"<<endl;
-            cout<<"4. Lihat Ruang Kelas Dan Mahasiswa"<<endl;
-            cout<<"5. Hapus Mahasiswa Yang Masuk Ruang Kelas"<<endl;
-            cout<<"6. Cari Mahasiswa Yang Masuk Keruang Tertenru"<<endl;
-            cout<<"7. Back"<<endl;
+            cout<<"4. Lihat Ruang Kelas Dengan Mahasiswanya"<<endl;
+            cout<<"5. Lihat Mahasiswa Dengan Ruang Kelasnya"<<endl;
+            cout<<"6. Hapus Mahasiswa Yang Masuk Ruang Kelas"<<endl;
+            cout<<"7. Cari Mahasiswa Yang Masuk Keruang Tertentu"<<endl;
+            cout<<"8. Cari Ruangan Yang Memiliki Mahasiswa Tertentu"<<endl;
+            cout<<"9. Back"<<endl;
             cout<<"___________________________________________________"<<endl;
             cout<<"Pilihan Anda : ";cin>>option;
             if(option == 1){
@@ -275,6 +283,11 @@ int main()
                             cout<<"___________________________"<<endl;
                             cout<<"Hubungkan kedua data ? [y/n] : ";cin>>pill1;
                             if(pill1 == "y" or pill1 == "Y"){
+                                address_relasi R = findRelasi(Lrelasi, P, M);
+                                if(R != NULL){
+                                    cout<<"Relasi tidak dapat ganda, kedua data telah berelasi";getche();
+                                    goto menu_relasi;
+                                }
                                 insertRelasi(Lrelasi, alokasiRelasi(P,M));
                                 cout<<"Data Berhasil Dihubungkan"<<endl<<endl;
                                 cout<<"Press Any Key To Back";getche();
@@ -350,6 +363,11 @@ int main()
                             cout<<"___________________________"<<endl;
                             cout<<"Hubungkan kedua data ? [y/n] : ";cin>>pill1;
                             if(pill1 == "y" or pill1 == "Y"){
+                                address_relasi R = findRelasi(Lrelasi, M, P);
+                                if(R != NULL){
+                                    cout<<"Relasi tidak dapat ganda, kedua data telah berelasi";getche();
+                                    goto menu_relasi;
+                                }
                                 insertRelasi(Lrelasi, alokasiRelasi(M,P));
                                 cout<<"Data Berhasil Dihubungkan"<<endl<<endl;
                                 cout<<"Press Any Key To Back";getche();
@@ -395,7 +413,7 @@ int main()
                     cout<<"Pindah Mahasiswa Ke Ruang Kelas Lain"<<endl;
                     cout<<"____________________________________"<<endl;
                     cout<<"Data Ditemukan"<<endl;
-                    address_relasi Rel = findRelasiTertentu(Lrelasi, Mh);
+                    address_relasi Rel = findRelasiMahasiswa(Lrelasi, Mh);
                     if(Rel != NULL){
                         printMahasiswaRelasiTertentu(Lrelasi, Mh);
                         cout<<"____________________________________"<<endl;
@@ -476,7 +494,7 @@ int main()
             }
             else if(option == 4){
                 system("cls");
-                cout<<"Data Ruang Kelas Dan Mahasiswa"<<endl;
+                cout<<"Lihat Ruang Kelas Dengan Mahasiswanya"<<endl;
                 cout<<"______________________________"<<endl;
                 printRuanganRelasiMahasiswa(Lruangan, Lrelasi);
                 cout<<endl;
@@ -484,36 +502,40 @@ int main()
                 goto menu_relasi;
             }
             else if(option == 5){
-                string pil_5;
-                menu_r5:
+                system("cls");
+                cout<<"Lihat Mahasiswa Dengan Ruang Kelasny"<<endl;
+                cout<<"______________________________"<<endl;
+                printMahasiswaRelasiRuangan(Lmahasiswa, Lrelasi);
+                cout<<endl;
+                cout<<"Press Any Key To Back";getche();
+                goto menu_relasi;
+            }
+            else if(option == 6){
+                string pil_6;
+                menu_r6:
                 system("cls");
                 cout<<"Data Ruang Kelas Dan Mahasiswa"<<endl;
                 cout<<"______________________________"<<endl;
                 printRuanganRelasiMahasiswa(Lruangan, Lrelasi);
                 cout<<endl;
                 cout<<"______________________________"<<endl;
-                cout<<"Masukkan Nim Mahasiswa : ";cin>>Ma.nim;
-                address_mahasiswa Mx = findMahasiswa(Lmahasiswa, Ma);
-                if(Mx != NULL){
+                cout<<"Masukkan Nama Ruangan : ";cin>>Ru.nama_ruangan;
+                address_ruangan R = findRuangan(Lruangan, Ru);
+                if(R != NULL){
                     pilih_r:
                     system("cls");
-                    cout<<"Data Mahasiswa Ditemukan"<<endl;
-                    cout<<"Nama Mahasiswa   : "<<info(Mx).nama_m<<endl;
-                    cout<<"Nim Mahasiswa    : "<<info(Mx).nim<<endl;
-                    cout<<"Kota Asal        : "<<info(Mx).asal<<endl;
-                    cout<<"Jurusan          : "<<info(Mx).jurusan<<endl;
-                    cout<<"Angkatan         : "<<info(Mx).angkatan<<endl;
+                    printRuanganYangDitempatiMahasiswa(Lrelasi, R);
                     cout<<"______________________"<<endl;
-                    cout<<"Masukkan Nama Ruang Kelas : ";cin>>Ru.nama_ruangan;
-                    address_ruangan R = findRuangan(Lruangan, Ru);
-                    if(R != NULL){
+                    cout<<"masukkan Nim Mahasiswa : ";cin>>Ma.nim;
+                    address_mahasiswa M = findMahasiswa(Lmahasiswa, Ma);
+                    if(M != NULL){
                         system("cls");
                         cout<<"Data Ditemukan"<<endl;
-                        cout<<"Nama Mahasiswa   : "<<info(Mx).nama_m<<endl;
-                        cout<<"Nim Mahasiswa    : "<<info(Mx).nim<<endl;
-                        cout<<"Kota Asal        : "<<info(Mx).asal<<endl;
-                        cout<<"Jurusan          : "<<info(Mx).jurusan<<endl;
-                        cout<<"Angkatan         : "<<info(Mx).angkatan<<endl;
+                        cout<<"Nama Mahasiswa   : "<<info(M).nama_m<<endl;
+                        cout<<"Nim Mahasiswa    : "<<info(M).nim<<endl;
+                        cout<<"Kota Asal        : "<<info(M).asal<<endl;
+                        cout<<"Jurusan          : "<<info(M).jurusan<<endl;
+                        cout<<"Angkatan         : "<<info(M).angkatan<<endl;
                         cout<<"______________________________"<<endl;
                         cout<<" Nama Ruangan : "<<info(R).nama_ruangan<<endl;
                         cout<<" Dosen        : "<<info(R).dosen<<endl;
@@ -521,23 +543,23 @@ int main()
                         cout<<" Jam Mulai    : "<<info(R).jam_mulai<<endl;
                         cout<<" Jam Berakhir : "<<info(R).jam_berakhir<<endl;
                         cout<<"______________________________"<<endl;
-                        address_relasi Re = findRelasi(Lrelasi, R, Mx);
+                        address_relasi Re = findRelasi(Lrelasi, R, M);
                         if(Re != NULL){
-                            cout<<"Hapus Relasi ? [y/n] : ";cin>>pil_5;
-                            if(pil_5 == "y" or pil_5 == "Y"){
+                            cout<<"Hapus Relasi ? [y/n] : ";cin>>pil_6;
+                            if(pil_6 == "y" or pil_6 == "Y"){
                                 deleteRelasi(Lrelasi, Re);
                                 cout<<"Relasi Berhasil Dihapus"<<endl<<endl;
                                 cout<<"Press Any Key To Back..";getche();
                                 goto menu_relasi;
                             }
                             else{
-                                goto menu_r5;
+                                goto menu_r6;
                             }
                         }
                         else{
                             cout<<"Data Tersedia, Tetapi Tidak Berelasi Satu Sama Lain"<<endl<<endl;
                             cout<<"Press Any Key To Back";getche();
-                            goto menu_r5;
+                            goto menu_r6;
                         }
                     }
                     else{
@@ -557,7 +579,7 @@ int main()
                     goto menu_relasi;
                 }
             }
-            else if(option == 6){
+            else if(option == 7){
                 system("cls");
                 cout<<"Cari Mahasiswa Yang Masuk Ke Ruang Kelas Tertentu"<<endl;
                 cout<<"_________________________________________________"<<endl;
@@ -567,7 +589,7 @@ int main()
                     system("cls");
                     cout<<"Cari Mahasiswa Yang Masuk Ke Ruang Kelas Tertentu"<<endl;
                     cout<<"_________________________________________________"<<endl;
-                    address_relasi R2 = findRelasiTertentu(Lrelasi, Mj);
+                    address_relasi R2 = findRelasiMahasiswa(Lrelasi, Mj);
                     if(R2 != NULL){
                         printMahasiswaRelasiTertentu(Lrelasi, Mj);
                         cout<<"Press Any Key To Back..";getche();
@@ -585,7 +607,35 @@ int main()
                     goto menu_relasi;
                 }
             }
-            else if(option == 7){
+            else if(option == 8){
+                system("cls");
+                cout<<"Cari Ruangan Yang Memiliki Mahasiswa Tertentu"<<endl;
+                cout<<"_________________________________________________"<<endl;
+                cout<<"Masukkan Nama Ruang Kelas : ";cin>>Ru.nama_ruangan;
+                address_ruangan P = findRuangan(Lruangan, Ru);
+                if(P != NULL){
+                    system("cls");
+                    cout<<"Cari Ruang Kelas Yang Memiliki Mahasiswa Tertentu"<<endl;
+                    cout<<"_________________________________________________"<<endl;
+                    address_relasi R2 = findRelasiRuangan(Lrelasi, P);
+                    if(R2 != NULL){
+                        printRuanganRelasiTertentu(Lrelasi, P);
+                        cout<<"Press Any Key To Back..";getche();
+                        goto menu_relasi;
+                    }
+                    else{
+                        cout<<"Data Ruangan Ditemukan Tetapi Belum Memiliki Mahasiswa Manapun"<<endl<<endl;
+                        cout<<"Press Any Key To Back..";getche();
+                        goto menu_relasi;
+                    }
+                }
+                else{
+                    cout<<"Data Mahasiswa Tidak Ditemukan"<<endl<<endl;
+                    cout<<"Press Any Key To Back..";getche();
+                    goto menu_relasi;
+                }
+            }
+            else if(option == 9){
                 goto start;
             }
             else{

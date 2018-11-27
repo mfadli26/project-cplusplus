@@ -26,11 +26,14 @@ void dealokasiRelasi(address_relasi R);
 void insertRelasi(relasi_list &Lrelasi, address_relasi R);
 
 address_relasi findRelasi(relasi_list Lrelasi, address_ruangan Rk, address_mahasiswa M);
-address_relasi findRelasiTertentu(relasi_list Lrelasi, address_mahasiswa M);
+address_relasi findRelasiMahasiswa(relasi_list Lrelasi, address_mahasiswa M);
+address_relasi findRelasiRuangan(relasi_list Lrelasi, address_ruangan Ru);
 
 void printRuanganRelasiMahasiswa(list_ruangan Lruangan, relasi_list Lrelasi);
-void printMahasiswaRelasiTertentu(relasi_list Lrelasi, address_mahasiswa M);
+void printRuanganRelasiTertentu(relasi_list Lrelasi, address_ruangan Ru);
 void printRuanganYangDitempatiMahasiswa(relasi_list Lrelasi, address_ruangan Rk);
+void printMahasiswaRelasiTertentu(relasi_list Lrelasi, address_mahasiswa M);
+void printMahasiswaRelasiRuangan(list_mahasiswa Lmahasiswa, relasi_list Lrelasi);
 
 void deletefirstRelasi(relasi_list &Lrelasi);
 void deletelastRelasi(relasi_list &Lrelasi);

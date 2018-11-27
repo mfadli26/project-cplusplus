@@ -114,18 +114,21 @@ void deleteFirstRuangan(list_ruangan &Lruangan, address_ruangan &P){
     if (first(Lruangan) == last(Lruangan)) {
         first(Lruangan) = NULL;
         last(Lruangan) = NULL;
+        dealokasiRuangan(P);
     }
     else {
         P = first(Lruangan);
         first(Lruangan) = next(P);
         next(P) = NULL;
         prev(first(Lruangan)) = NULL;
+        dealokasiRuangan(P);
     }
 };
 void deleteAfterRuangan(list_ruangan &Lruangan, address_ruangan &P){
     if (first(Lruangan) == last(Lruangan)) {
         first(Lruangan) = NULL;
         last(Lruangan) = NULL;
+        dealokasiRuangan(P);
     }
     else {
         address_ruangan Prec = prev(P);
@@ -133,18 +136,21 @@ void deleteAfterRuangan(list_ruangan &Lruangan, address_ruangan &P){
         prev(next(P)) = Prec;
         next(P) = NULL;
         prev(P) = NULL;
+        dealokasiRuangan(P);
     }
 };
 void deleteLastRuangan(list_ruangan &Lruangan, address_ruangan &P){
     if (first(Lruangan) == last(Lruangan)) {
         first(Lruangan) = NULL;
         last(Lruangan) = NULL;
+        dealokasiRuangan(P);
     }
     else {
         P = last(Lruangan);
         last(Lruangan) = prev(P);
         next(last(Lruangan)) = NULL;
         prev(P) = NULL;
+        dealokasiRuangan(P);
     }
 };
 
@@ -191,18 +197,21 @@ void deleteFirstMahasiswa(list_mahasiswa &Lmahasiswa, address_mahasiswa &P){
     if (first(Lmahasiswa) == last(Lmahasiswa)) {
         first(Lmahasiswa) = NULL;
         last(Lmahasiswa) = NULL;
+        dealokasiMahasiswa(P);
     }
     else {
         P = first(Lmahasiswa);
         first(Lmahasiswa) = next(P);
         next(P) = NULL;
         prev(first(Lmahasiswa)) = NULL;
+        dealokasiMahasiswa(P);
     }
 };
 void deleteAfterMahasiswa(list_mahasiswa &Lmahasiswa, address_mahasiswa &P){
     if (first(Lmahasiswa) == last(Lmahasiswa)) {
         first(Lmahasiswa) = NULL;
         last(Lmahasiswa) = NULL;
+        dealokasiMahasiswa(P);
     }
     else {
         address_mahasiswa Prec = prev(P);
@@ -210,18 +219,21 @@ void deleteAfterMahasiswa(list_mahasiswa &Lmahasiswa, address_mahasiswa &P){
         prev(next(P)) = Prec;
         next(P) = NULL;
         prev(P) = NULL;
+        dealokasiMahasiswa(P);
     }
 };
 void deleteLastMahasiswa(list_mahasiswa &Lmahasiswa, address_mahasiswa &P){
     if (first(Lmahasiswa) == last(Lmahasiswa)) {
         first(Lmahasiswa) = NULL;
         last(Lmahasiswa) = NULL;
+        dealokasiMahasiswa(P);
     }
     else {
         P = last(Lmahasiswa);
         last(Lmahasiswa) = prev(P);
         next(last(Lmahasiswa)) = NULL;
         prev(P) = NULL;
+        dealokasiMahasiswa(P);
     }
 };
 
